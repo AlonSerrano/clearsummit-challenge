@@ -46,8 +46,26 @@ This project is a REST API built using Node.js with TypeScript. The API includes
    ```bash
    docker-compose up --build
    ```
+![image](https://github.com/user-attachments/assets/bf197381-01fa-4870-8aa2-4023a3bd33fc)
 
 4. **The application should now be running on `http://localhost:3000`.**
+
+## Test end-point
+
+ ```bash
+curl --location 'localhost:3000/api/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "first_name":"Luis",
+    "last_name":"Serrano",
+    "email":"luis_alonso@outlook.com",
+    "date_of_birth":"1991-11-22",
+    "accept_terms_of_service":false
+}'
+ ```
+
+![image](https://github.com/user-attachments/assets/8ecfab4c-1ad8-42d9-8fbb-63093c3d8e8a)
+
 
 ## How to Run Tests
 
@@ -62,6 +80,9 @@ This project is a REST API built using Node.js with TypeScript. The API includes
 
 3. **Jest will execute the tests and provide the results in the terminal.**
 
+![image](https://github.com/user-attachments/assets/eefc6e7b-893c-42d0-89f5-612a410d154e)
+
+
 ## How to View API Documentation
 
 The API documentation is generated using Swagger. You can view the API documentation by navigating to the following URL:
@@ -71,6 +92,8 @@ http://localhost:3000/api-docs
 ```
 
 This documentation provides detailed information about the available endpoints, request parameters, and response formats.
+
+![screencapture-localhost-3000-api-docs-2024-07-31-17_36_11](https://github.com/user-attachments/assets/5f118629-02b0-46de-8639-a22a63b6f1bb)
 
 ## Contact
 
