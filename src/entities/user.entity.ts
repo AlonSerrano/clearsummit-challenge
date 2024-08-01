@@ -1,29 +1,27 @@
-import { Entity, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
-import { IsEmail, IsNotEmpty, IsBoolean, IsDateString } from 'class-validator';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { IsEmail, IsNotEmpty, IsBoolean, IsDate, MinDate } from 'class-validator';
 
 @Entity()
-@Unique(["email"])
 export class User {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'First name should not be empty' })
   first_name!: string;
 
   @Column()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Last name should not be empty' })
   last_name!: string;
 
-  @Column()
-  @IsEmail()
+  @Column({ unique: true })
+  @IsEmail({}, { message: 'Email should be in a valid email format' })
   email!: string;
 
   @Column()
-  @IsDateString()
-  date_of_birth!: string;
+  date_of_birth!: Date;
 
   @Column()
-  @IsBoolean()
+  @IsBoolean({ message: 'Accept terms of service should be a boolean' })
   accept_terms_of_service!: boolean;
 }

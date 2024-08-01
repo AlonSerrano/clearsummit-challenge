@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { UserService } from '../services/user.service';
-import { validate } from 'class-validator';
+import { validate, ValidationError } from 'class-validator';
 import { User } from '../entities/user.entity';
+import { subYears } from 'date-fns';
 
 const userService = new UserService();
 
@@ -12,10 +13,22 @@ export const createUser = async (req: Request, res: Response) => {
   user.first_name = first_name;
   user.last_name = last_name;
   user.email = email;
-  user.date_of_birth = date_of_birth;
+
+  const date = new Date(date_of_birth);
+  if (isNaN(date.getTime())) {
+    return res.status(400).json({ error: 'Date of birth should be a valid date' });
+  }
+  if (date > subYears(new Date(), 18)) {
+    return res.status(400).json({ error: 'User must be over 18 years old' });
+  }
+  user.date_of_birth = date;
+
+  if (accept_terms_of_service !== true) {
+    return res.status(400).json({ error: 'Accept terms of service must be true' });
+  }
   user.accept_terms_of_service = accept_terms_of_service;
 
-  const errors = await validate(user);
+  const errors: ValidationError[] = await validate(user);
   if (errors.length > 0) {
     return res.status(400).json(errors);
   }
