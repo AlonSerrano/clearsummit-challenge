@@ -66,6 +66,17 @@ curl --location 'localhost:3000/api/users' \
 
 ![image](https://github.com/user-attachments/assets/8ecfab4c-1ad8-42d9-8fbb-63093c3d8e8a)
 
+## Validations
+
+1. **Date_of_birth should be a valid date, must be over 18 years old:**
+![image](https://github.com/user-attachments/assets/4ff9445a-ef9e-487d-9bf0-dc56eb3d59f5)
+2. **Accept_terms_of_service should be true:**
+![image](https://github.com/user-attachments/assets/81a50e96-5288-4038-b3ce-8ffc38598b75)
+3. **First_name and last_name should be non-empty strings:**
+![image](https://github.com/user-attachments/assets/be24b35a-c200-42c9-9ecf-1866efbab273)
+4. **Email should be in a valid email format, and unique:**
+![image](https://github.com/user-attachments/assets/5ec1f216-5155-4958-9e96-5b1d9c0ad42b)
+
 
 ## How to Run Tests
 
